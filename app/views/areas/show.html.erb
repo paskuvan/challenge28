@@ -1,9 +1,14 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
-  <%= @area.name %>
-</p>
+  <div class="container">
+    <strong>Name:</strong>
+    <%= @area.name %>
+    <% @area.employee.each do |e| %>
+      <%= e.name %>
+    <% end %>
+  </p>
 
-<%= link_to 'Edit', edit_area_path(@area) %> |
-<%= link_to 'Back', areas_path %>
+  <%= link_to 'Edit', edit_area_path(@area), class:'btn btn-primary' %> |
+  <%= link_to 'Back', areas_path, class:'btn btn-info' %>
+</div>
