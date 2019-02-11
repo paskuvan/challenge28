@@ -1,10 +1,61 @@
 <p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col-md-12 well">
+    <h2>
+      <strong>Company name:</strong>
+      <%= @company.name %>
+    </h2>
+  </div>
+</div>
 
+<div class="row">
+  <div class="col-md-9 well">
+    <h2>Current company employees</h2>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Area</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
 
-<p>
-  <strong>Name:</strong>
-  <%= @company.name %>
-</p>
+        <tbody>
+          <% @employees.each do |emp| %>
+            <tr>
+              <td><%= emp.first_name %></td>
+              <td><%= emp.last_name %></td>
+              <td><%= emp.email %></td>
+              <td><%= employee_area(emp) %></td>
+              <td><%= link_to 'Delete', company_employee_path(emp.company, emp), method: 'delete', class: 'btn btn-danger', data: { confirm: 'Are you sure?' } %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <%= link_to 'Edit', edit_company_path(@company), class: 'btn btn-warning' %> |
+      <%= link_to 'Back', companies_path, class: 'btn btn-primary' %>
+  </div>
+  <div class="col-md-3 well">
+    <h2>New Employee</h2>
+    <%= form_with model: [@company, @employee], class: 'form-horizontal' do |form| %>
 
-<h4><%= link_to 'Edit', edit_company_path(@company) %> |
-<%= link_to 'Back', companies_path %></h4>
+      <%= form.label :first_name %>
+      <%= form.text_field :first_name, class: 'form-control' %>
+
+      <%= form.label :last_name %>
+      <%= form.text_field :last_name, class: 'form-control' %>
+
+      <%= form.label :email %>
+      <%= form.email_field :email, class: 'form-control' %>
+
+      <%= form.label :area_id %>
+      <%= form.select :area_id, @areas, class: 'form-control' %>
+      <br>
+      <br>
+      <%= form.submit 'Save Employee', class: 'btn btn-success' %>
+
+    <% end %>
+  </div>
+</div>

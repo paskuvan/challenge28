@@ -1,14 +1,13 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <div class="container">
-    <strong>Name:</strong>
+<div class="well">
+  <h2>
+    <strong>Area Name:</strong>
     <%= @area.name %>
-    <% @area.employee.each do |e| %>
-      <%= e.name %>
-    <% end %>
-  </p>
+  </h2>
+  <h2>
+    <strong>Cost per employee (monthly):</strong>
+    <%= @area.cost %>
+  </h2>
 
-  <%= link_to 'Edit', edit_area_path(@area), class:'btn btn-primary' %> |
-  <%= link_to 'Back', areas_path, class:'btn btn-info' %>
+  <%= link_to 'Edit', edit_area_path(@area), class: 'btn btn-warning' %> |
+  <%= link_to 'Back', areas_path, class: 'btn btn-primary' %>
 </div>
